@@ -4,6 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
+    "compile-sass": "node-sass src/assets/scss -o dist/public/css --source-map-embed",
+    "build-sass": "node-sass src/assets/scss -o  dist/public/css --output-style compressed",
     "start": "webpack ./src/index.js --output-path ./dist/ --watch"
   },
   "keywords": [],
@@ -18,7 +20,9 @@
     "@babel/plugin-transform-react-jsx": "^7.12.11",
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "css-loader": "^5.0.1",
+    "node-sass": "^5.0.0",
     "webpack": "^5.11.0",
     "webpack-cli": "^4.2.0"
   }
