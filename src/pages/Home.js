@@ -3,12 +3,12 @@ import Photo from '../components/Photo.js'
 
 function Home() {
     let photos;
-
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
     return {
         oncreate: () => {
             m.request({
                 method: "GET",
-                url: "https://picsum.photos/v2/list?page=2&limit=7",
+                url: `https://picsum.photos/v2/list?page=${randomNumber}&limit=7`,
             }).then(function (result) {
                 photos = result
             })
