@@ -1,39 +1,46 @@
 import m from "mithril";
 
 function Home() {
+    let photos;
+    const displayAuthorHandler = (e, id) => {
+        const author = document.getElementById(`author${id}`)
+        if (e.type === 'mouseenter') {
+            author.style.opacity = 1
+        }
+        if (e.type === 'mouseleave') {
+            author.style.opacity = 0        }
+    }
+
     return {
-        oninit: function (vnode) {
+        oncreate: () => {
             m.request({
                 method: "GET",
                 url: "https://picsum.photos/v2/list?page=2&limit=7",
             }).then(function (result) {
-                console.log(result)
+                photos = result
             })
         },
-        view: (ctrl) => (
+        view: () => (
             <main>
                 <div class='gallery'>
-                    <div class="photo-1">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-2">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-3">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-4">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-5">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-6">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
-                    <div class="photo-7">
-                        <img src="https://picsum.photos/1000/1000" />
-                    </div>
+                    {photos && photos.map((photo, index) => (
+                        <div key={photo.id} class={`photo-${index}`}>
+                            <img
+                                id={`photo${photo.id}`}
+                                onmouseenter={(e) => displayAuthorHandler(e, photo.id)}
+                                onmouseleave={(e) => displayAuthorHandler(e, photo.id)}
+                                title='mon image'
+                                src={`${photo.download_url}`}
+                                alt='nom_image' />
+                            <div 
+                                onmouseenter={(e) => displayAuthorHandler(e, photo.id)}
+                                onmouseleave={(e) => displayAuthorHandler(e, photo.id)}
+                                id={`author${photo.id}`} 
+                                class='author-container'>
+                                <h2 class='author-name'>{photo.author}</h2>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </main>
         )
@@ -41,30 +48,3 @@ function Home() {
 }
 
 export default Home
-
-const styles = {
-    photo1: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo2: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo3: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo4: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo5: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo6: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo7: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-    photo8: {
-        backgroundColor: "#" + Math.floor(Math.random() * 16777215).toString(16)
-    },
-}
