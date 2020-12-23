@@ -1,15 +1,4 @@
 import m from "mithril";
+import Home from './pages/Home.js'
 
-function Home() {
-    return {
-        view: () => (
-            <main>
-                <h1>Hello world</h1>
-            </main>
-        )
-    }
-}
-
-m.route(document.body, '/', {
-    '/': Home
-})
+m.mount(document.body, Home)
