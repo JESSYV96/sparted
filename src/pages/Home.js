@@ -14,7 +14,7 @@ function Home() {
             })
         },
         view: () => (
-            <main>
+            <main>s
                 <div class='gallery'>
                     {photos && photos.map((photo, index) => <Photo
                         index={index}
