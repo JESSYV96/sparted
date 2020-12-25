@@ -1,0 +1,37 @@
+.modal-bg {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+
+  div {
+    position: relative;
+  }
+
+  div .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 2em;
+    font-weight: 900;
+    color: white;
+    cursor: pointer;
+  }
+
+  div .full-photo {
+    height: 80vh;
+  }
+}
+
+.modal-active {
+  visibility: visible;
+  opacity: 1;
+}
