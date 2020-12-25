@@ -10,7 +10,8 @@
     "build-css": "node-sass src/assets/scss/main.scss -o  dist/public/css --output-style compressed",
     "build-js": "webpack ./src/index.js --output-path ./dist/",
     "build": "concurrently \"npm:build-*\"",
-    "test": "mocha ./src/tests/"
+    "test": "mocha ./src/tests/",
+    "cypress:open": "npx cypress open"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "css-loader": "^5.0.1",
+    "cypress": "^6.2.0",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
     "mithril-query": "^3.1.0",
