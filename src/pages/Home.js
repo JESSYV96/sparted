@@ -15,16 +15,28 @@ function Home() {
     const hideModalHandler = () => {
         let modal = document.querySelector(`.modal-bg`)
         modal.classList.remove('modal-active')
-        console.log(modal)
     }
-
     return {
         oncreate: () => {
             m.request({
                 method: "GET",
                 url: `https://picsum.photos/v2/list?page=${randomNumber}&limit=7`,
             }).then(function (result) {
-               return photos = result
+                let ramdomizePhotos = []
+                result.map((photo) => {
+                    let newIndex = Math.floor(Math.random() * 7)
+                    if (!ramdomizePhotos[newIndex]) {
+                        return ramdomizePhotos[newIndex] = photo
+                    } else {
+                        while (ramdomizePhotos[newIndex]) {
+                            newIndex = Math.floor(Math.random() * 7)
+                            if (!ramdomizePhotos[newIndex]) {
+                                return ramdomizePhotos[newIndex] = photo
+                            }
+                        }
+                    }
+                })
+                return photos = ramdomizePhotos
             })
         },
         view: () => (
