@@ -20,3 +20,10 @@ yarn-error.log*
 .env
 .env.test
 .env*.local
+
+# CypressIO 
+cypress/results/*
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
+cypress/integration/examples/*
