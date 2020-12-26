@@ -16,27 +16,42 @@ function Home() {
         let modal = document.querySelector(`.modal-bg`)
         modal.classList.remove('modal-active')
     }
+    // const ramdomizePhotos = (arrayToRandom, newIndex) => {
+    //     arrayToRandom.map((item) => {
+    //         if (!ramdomPhotos[newIndex]) {
+    //             return ramdomPhotos[newIndex] = item
+    //         } else {
+    //             while (ramdomPhotos[newIndex]) {
+    //                 newIndex = Math.floor(Math.random() * 7)
+    //                 if (!ramdomPhotos[newIndex]) {
+    //                     return ramdomPhotos[newIndex] = item
+    //                 }
+    //             }
+    //         }
+    //     })
+    // }
+
     return {
         oncreate: () => {
             m.request({
                 method: "GET",
                 url: `https://picsum.photos/v2/list?page=${randomNumber}&limit=7`,
             }).then(function (result) {
-                let ramdomizePhotos = []
+                let ramdomPhotos = []
                 result.map((photo) => {
                     let newIndex = Math.floor(Math.random() * 7)
-                    if (!ramdomizePhotos[newIndex]) {
-                        return ramdomizePhotos[newIndex] = photo
+                    if (!ramdomPhotos[newIndex]) {
+                        return ramdomPhotos[newIndex] = photo
                     } else {
-                        while (ramdomizePhotos[newIndex]) {
+                        while (ramdomPhotos[newIndex]) {
                             newIndex = Math.floor(Math.random() * 7)
-                            if (!ramdomizePhotos[newIndex]) {
-                                return ramdomizePhotos[newIndex] = photo
+                            if (!ramdomPhotos[newIndex]) {
+                                return ramdomPhotos[newIndex] = photo
                             }
                         }
                     }
                 })
-                return photos = ramdomizePhotos
+                return photos = ramdomPhotos
             })
         },
         view: () => (
