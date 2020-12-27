@@ -26,8 +26,16 @@
     cursor: pointer;
   }
 
-  div .full-photo {
-    height: 80vh;
+  @media screen and (max-width: 599px) {
+    div .full-photo {
+      height: 40vh;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    div .full-photo {
+      height: 80vh;
+    }
   }
 }
 
