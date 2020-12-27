@@ -16,20 +16,21 @@ function Home() {
         let modal = document.querySelector(`.modal-bg`)
         modal.classList.remove('modal-active')
     }
-    // const ramdomizePhotos = (arrayToRandom, newIndex) => {
-    //     arrayToRandom.map((item) => {
-    //         if (!ramdomPhotos[newIndex]) {
-    //             return ramdomPhotos[newIndex] = item
-    //         } else {
-    //             while (ramdomPhotos[newIndex]) {
-    //                 newIndex = Math.floor(Math.random() * 7)
-    //                 if (!ramdomPhotos[newIndex]) {
-    //                     return ramdomPhotos[newIndex] = item
-    //                 }
-    //             }
-    //         }
-    //     })
-    // }
+    const ramdomizeArray = (arrayToRandom, arrayRandomized = [], randomNumberMax) => {
+        arrayToRandom.map((photo) => {
+            let newIndex = Math.floor(Math.random() * randomNumberMax)
+            if (!arrayRandomized[newIndex]) {
+                return arrayRandomized[newIndex] = photo
+            } else {
+                while (arrayRandomized[newIndex]) {
+                    newIndex = Math.floor(Math.random() * randomNumberMax)
+                    if (!arrayRandomized[newIndex]) {
+                        return arrayRandomized[newIndex] = photo
+                    }
+                }
+            }
+        })
+    }
 
     return {
         oncreate: () => {
@@ -38,19 +39,7 @@ function Home() {
                 url: `https://picsum.photos/v2/list?page=${randomNumber}&limit=7`,
             }).then(function (result) {
                 let ramdomPhotos = []
-                result.map((photo) => {
-                    let newIndex = Math.floor(Math.random() * 7)
-                    if (!ramdomPhotos[newIndex]) {
-                        return ramdomPhotos[newIndex] = photo
-                    } else {
-                        while (ramdomPhotos[newIndex]) {
-                            newIndex = Math.floor(Math.random() * 7)
-                            if (!ramdomPhotos[newIndex]) {
-                                return ramdomPhotos[newIndex] = photo
-                            }
-                        }
-                    }
-                })
+                ramdomizeArray(result, ramdomPhotos, 7)
                 return photos = ramdomPhotos
             })
         },
